@@ -1,7 +1,9 @@
-import { useState } from "react";
-export function TaskForm({createTask}) {
+import { useContext,useState } from "react";
+import { TaskContext } from "../Context/TaskContext";
+export function TaskForm() {
   const [task, setTask] = useState("");
  const [desp, setDesp] = useState("");
+ const{createTask} = useContext(TaskContext); 
   function hadleChange(e) {
     setTask(e.target.value);
   }
@@ -16,7 +18,6 @@ export function TaskForm({createTask}) {
     createTask(task,desp);
     setTask(''); 
     setDesp(''); 
-
   }
   return (
     <div>
@@ -34,7 +35,7 @@ export function TaskForm({createTask}) {
         <br /> 
         <div>
           <span> </span>
-        <textarea name="" id="TexTareaa" value={desp} cols="30" rows="10" placeholder="Añade Una Descripcion a tu Tarea: " onChange={handleChangeT}></textarea>
+        <textarea value={desp} cols="30" rows="10" placeholder="Añade Una Descripcion a tu Tarea: " onChange={handleChangeT}></textarea>
         </div>
         <div>
         <button>Guardar</button>
